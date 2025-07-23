@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      background: linear-gradient(135deg, #557715, #cf4707);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .todoapp {
+      width: 100%;
+      max-width: 500px;
+      background-color: #fff;
+      padding: 40px 30px 70px;
+      border-radius: 10px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    .todoapp h2 {
+      color: #002765;
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #edeef0;
+      border-radius: 30px;
+      padding-left: 20px;
+      margin-bottom: 25px;
+    }
+
+    input {
+      flex: 1;
+      border: none;
+      outline: none;
+      background: transparent;
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    button {
+      border: none;
+      outline: none;
+      padding: 16px 30px;
+      background: #ff5945;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 40px;
+    }
+
+    ul li {
+      list-style: none;
+      
+      font-size: 17px;
+      padding: 12px 8px 12px 50px;
+      user-select: none;
+      cursor: pointer;
+      position: relative;
+      padding-right: 40px; 
+    }
+ 
+
+
+    ul li::before {
+      content: "";
+      position: absolute;
+      height: 28px;
+      width: 28px;
+      border-radius: 50%;
+      background-image: url('download.png'); /* Replace with your icon */
+      background-size: cover;
+      background-position: center;
+      top: 12px;
+      left: 8px;
+    }
+
+    ul li.checked {
+      color: #912525;
+      text-decoration: line-through;
+    }
+
+    ul li.checked::before {
+      background-image: url('checked.png'); /* Change icon for checked item */
+    }
+  </style>
+</head>
+<body>
+  <div class="todoapp">
+    <h2>To-Do List</h2>
+    <div class="row">
+      <input type="text" id="input" placeholder="Add your task...">
+      <button id="addBtn">Add</button>
+    </div>
+    <ul class="ullist"></ul>
+  </div>
+
+  <script>
+
+  const input = document.getElementById("input");
+  const addBtn = document.getElementById("addBtn");
+  const ul = document.querySelector(".ullist");
+
+  // Load tasks from localStorage on page load
+  window.onload = () => {
+    const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    tasks.forEach(task => addTaskToList(task.text, task.checked));
+  };
+
+  // Add button click
+  addBtn.addEventListener("click", () => {
+    const task = input.value.trim();
+    if (task === "") {
+      alert("Please enter a task");
+      return;
+    }
+    addTaskToList(task);
+    saveTask(task, false);
+    input.value = "";
+  });
+
+  // Add task to DOM
+function addTaskToList(taskText, isChecked = false) {
+  const li = document.createElement("li");
+  li.textContent = taskText;
+
+  if (isChecked) li.classList.add("checked");
+
+  // Create delete button
+  const delBtn = document.createElement("span");
+  delBtn.textContent = "❌";
+  delBtn.style.marginLeft = "10px";
+  delBtn.style.color = "red";
+  delBtn.style.float = "right";
+  delBtn.style.cursor = "pointer";
+
+  // Append delete button to the list item
+  li.appendChild(delBtn);
+  ul.appendChild(li);
+
+  // Toggle check
+  li.addEventListener("click", (e) => {
+    if (e.target === delBtn) return; // Avoid toggling when clicking delete
+    li.classList.toggle("checked");
+    updateLocalStorage();
+  });
+
+  // Delete task
+  delBtn.addEventListener("click", () => {
+    li.remove();
+    updateLocalStorage();
+  });
+}
+
+
+  // Save task to localStorage
+  function saveTask(text, checked) {
+    const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    tasks.push({ text, checked });
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }
+
+  // Update localStorage after changes
+  function updateLocalStorage() {
+    const allTasks = [];
+    document.querySelectorAll(".ullist li").forEach(li => {
+      allTasks.push({
+        text: li.textContent,
+        checked: li.classList.contains("checked")
+      });
+    });
+    localStorage.setItem("tasks", JSON.stringify(allTasks));
+  }
+</script>
+
+  
+</body>
+</html>

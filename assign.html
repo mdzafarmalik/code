@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AssignWork - Home</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 text-gray-800">
+  <!-- Navbar -->
+  <nav class="bg-white shadow-md p-4 fixed w-full top-0 z-50">
+    <div class="container mx-auto flex justify-between items-center">
+      <a href="#" class="flex items-center space-x-2">
+        <img src="logo.png" alt="AssignWork Logo" class="h-8 w-8">
+        <span class="text-2xl font-bold text-indigo-600">AssignWork</span>
+      </a>
+      <ul class="flex space-x-6 text-sm md:text-base">
+        <li><a href="#" class="hover:text-indigo-500 transition">Home</a></li>
+        <li><a href="#" class="hover:text-indigo-500 transition">Shop</a></li>
+        <li><a href="#" class="hover:text-indigo-500 transition">Notes</a></li>
+        <li><a href="#" class="hover:text-indigo-500 transition">Events</a></li>
+        <li><a href="#" class="hover:text-indigo-500 transition">Profile</a></li>
+        <li><a href="#" class="bg-indigo-500 text-white px-3 py-1 rounded hover:bg-indigo-600 transition">Login</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="pt-20">
+    <!-- Hero Section -->
+    <section class="bg-indigo-600 text-white py-20">
+      <div class="container mx-auto text-center px-6">
+        <h2 class="text-3xl md:text-5xl font-bold mb-4">Empowering Students to Learn, Earn, and Lead</h2>
+        <p class="text-lg md:text-xl mb-6">Get handwritten notes, share your knowledge, join contests, and track your academic growth — all in one place.</p>
+        <a href="#" class="bg-white text-indigo-600 font-semibold px-6 py-3 rounded-full hover:bg-gray-100">Get Started</a>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16">
+      <div class="container mx-auto px-6 text-center">
+        <h3 class="text-2xl font-bold mb-8">What You Can Do on AssignWork</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="bg-white shadow rounded-lg p-6">
+            <h4 class="font-semibold text-lg mb-2">📝 Order or Write Notes</h4>
+            <p>Get high-quality handwritten or digital notes and earn by writing for others.</p>
+          </div>
+          <div class="bg-white shadow rounded-lg p-6">
+            <h4 class="font-semibold text-lg mb-2">📦 Stationery & Shop</h4>
+            <p>Buy educational materials, bundles, and custom packages delivered to your door.</p>
+          </div>
+          <div class="bg-white shadow rounded-lg p-6">
+            <h4 class="font-semibold text-lg mb-2">🏆 Weekly Contests & Rewards</h4>
+            <p>Participate in events and get recognized as Solver of the Week, Month, or Year.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Shop Section -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-6">
+        <h2 class="text-2xl font-bold text-center mb-8">🛒 Shop Top Picks</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="bg-gray-100 rounded-lg shadow p-4">
+            <img src="book1.jpg" alt="Book 1" class="w-full h-48 object-cover rounded mb-4">
+            <h4 class="font-semibold text-lg">Engineering Notes - Semester 1</h4>
+            <p class="text-gray-700">Handwritten PDF + Hard Copy</p>
+            <p class="text-indigo-600 font-bold mt-2">₹149</p>
+            <button class="mt-4 w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700">Add to Cart</button>
+          </div>
+          <div class="bg-gray-100 rounded-lg shadow p-4">
+            <img src="book2.jpg" alt="Book 2" class="w-full h-48 object-cover rounded mb-4">
+            <h4 class="font-semibold text-lg">Science Bundle - Class 10</h4>
+            <p class="text-gray-700">Includes Notes + Practice Booklets</p>
+            <p class="text-indigo-600 font-bold mt-2">₹199</p>
+            <button class="mt-4 w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700">Add to Cart</button>
+          </div>
+          <div class="bg-gray-100 rounded-lg shadow p-4">
+            <img src="book3.jpg" alt="Book 3" class="w-full h-48 object-cover rounded mb-4">
+            <h4 class="font-semibold text-lg">Custom Practical File</h4>
+            <p class="text-gray-700">Upload your topic, get it written</p>
+            <p class="text-indigo-600 font-bold mt-2">₹99</p>
+            <button class="mt-4 w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Notes Upload Section -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-6 text-center">
+        <h2 class="text-2xl font-bold mb-6">📝 Upload Your Notes</h2>
+        <form class="max-w-xl mx-auto bg-white p-6 rounded-lg shadow-md" onsubmit="handleNoteSubmit(event)">
+          <div class="mb-4 text-left">
+            <label class="block font-semibold mb-2">Title</label>
+            <input type="text" class="w-full border border-gray-300 rounded px-4 py-2" placeholder="Enter note title">
+          </div>
+          <div class="mb-4 text-left">
+            <label class="block font-semibold mb-2">Subject</label>
+            <input type="text" class="w-full border border-gray-300 rounded px-4 py-2" placeholder="Enter subject name">
+          </div>
+          <div class="mb-4 text-left">
+            <label class="block font-semibold mb-2">Upload File (PDF)</label>
+            <input type="file" class="w-full border border-gray-300 rounded px-4 py-2">
+          </div>
+          <button type="submit" class="w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700">Submit Note</button>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-6">
+    <div class="container mx-auto text-center">
+      <p>&copy; 2025 AssignWork. All rights reserved.</p>
+    </div>
+  </footer>
+<script>
+  function handleNoteSubmit(event) {
+    event.preventDefault();
+    alert("Note submitted successfully!");
+  }
+</script>
+</body>
+</html>
